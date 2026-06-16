@@ -20,7 +20,7 @@ your_folders/
 ```
 
 # Clone the base ns-3 repository
-```text
+```bash
 git clone [https://gitlab.com/nsnam/ns-3-dev.git](https://gitlab.com/nsnam/ns-3-dev.git)
 cd ns-3-dev
 ```
