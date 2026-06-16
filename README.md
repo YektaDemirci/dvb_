@@ -20,12 +20,9 @@ your_folders/
 ```
 
 # Clone the base ns-3 repository
-```bash
-git clone [https://gitlab.com/nsnam/ns-3-dev.git](https://gitlab.com/nsnam/ns-3-dev.git)
+git clone https://gitlab.com/nsnam/ns-3-dev.git
 cd ns-3-dev
 
-## Checkout the specific verified commit (ns-3.46)
-```bash
 git checkout ea50b72ab79b1ec5912c66d5b384effa829f18bc
 cd contrib
 
