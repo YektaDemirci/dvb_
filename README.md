@@ -19,7 +19,7 @@ your_folders/
         └── traffic/              # Supporter Repository     
 ```
 
-# Clone the base ns-3 repository and checkout
+# A. Clone the base ns-3 repository and checkout
 ```bash
 git clone https://gitlab.com/nsnam/ns-3-dev.git
 cd ns-3-dev
@@ -57,7 +57,7 @@ If the compilation is successful you should be able to run the default simulatio
 ```
 
 
-## Enabling Dynamic Beam Hopping
+# B. Enabling Dynamic Beam Hopping
 
 The default commits do not support dynamic beam hopping out of the box. To enable this feature, you can use the scripts provided in this repository by placing them in the correct directories as outlined below.
 
