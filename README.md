@@ -19,16 +19,12 @@ your_folders/
         └── traffic/              # Supporter Repository     
 ```
 
-# A. Clone the base ns-3 repository and checkout
+# A. Clone the base ns-3 repository, checkout go to contrib
 ```bash
 git clone https://gitlab.com/nsnam/ns-3-dev.git
 cd ns-3-dev
 git checkout ea50b72ab79b1ec5912c66d5b384effa829f18bc
-```
-
-## --- 0. Create contrib folder to clone supporter repositories ---
-```bash
-mkdir contrib && cd contrib
+cd contrib
 ```
 
 ## --- 1. Clone and Checkout 'satellite' ---
