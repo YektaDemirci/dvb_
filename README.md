@@ -16,8 +16,9 @@ your_folders/
     └── contrib/
         ├── magister-stats/       # Supporter Repository
         ├── satellite/            # Supporter Repository
-        └── traffic/              # Supporter Repository
-        
+        └── traffic/              # Supporter Repository     
+```
+
 # Clone the base ns-3 repository
 git clone [https://gitlab.com/nsnam/ns-3-dev.git](https://gitlab.com/nsnam/ns-3-dev.git)
 cd ns-3-dev
@@ -39,3 +40,8 @@ cd traffic && git checkout 2710ed71c2cba9d92940bdf53ad85159504329d9 && cd ..
 # --- 3. Clone and Checkout 'magister-stats' ---
 git clone [https://github.com/sns3/stats.git](https://github.com/sns3/stats.git) magister-stats
 cd magister-stats && git checkout 003f6a29ce74808d0b2579fd16a9718f793f5bfe && cd ..
+
+
+Once you have these, you can compile the source codes as described by [SNS-3 Satellite GitHub Repository](https://github.com/sns3/sns3-satellite#cmake).
+If the compilation is successful you should be able to run the default simulation examples:
+./ns3 run sat-fwd-link-beam-hopping-example
