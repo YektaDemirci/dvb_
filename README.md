@@ -20,18 +20,21 @@ your_folders/
 ```
 
 # Clone the base ns-3 repository
+```text
 git clone [https://gitlab.com/nsnam/ns-3-dev.git](https://gitlab.com/nsnam/ns-3-dev.git)
 cd ns-3-dev
-
-# Checkout the specific verified commit (ns-3.46)
+```
+## Checkout the specific verified commit (ns-3.46)
+```text
 git checkout ea50b72ab79b1ec5912c66d5b384effa829f18bc
-
-
 cd contrib
+```
 
-# --- 1. Clone and Checkout 'satellite' ---
+## --- 1. Clone and Checkout 'satellite' ---
+```text
 git clone [https://github.com/sns3/sns3-satellite.git](https://github.com/sns3/sns3-satellite.git) satellite
 cd satellite && git checkout c4c6e604c3e71daa30c5331d3bbef47b03770deb && cd ..
+```
 
 # --- 2. Clone and Checkout 'traffic' ---
 git clone [https://github.com/sns3/traffic.git](https://github.com/sns3/traffic.git) traffic
