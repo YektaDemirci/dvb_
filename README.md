@@ -51,6 +51,27 @@ cd magister-stats && git checkout 003f6a29ce74808d0b2579fd16a9718f793f5bfe && cd
 
 Once you have these, you can compile the source codes as described by [SNS-3 CMake](https://github.com/sns3/sns3-satellite#cmake).
 If the compilation is successful you should be able to run the default simulation examples, for instance:
+
 ```bash
 ./ns3 run sat-fwd-link-beam-hopping-example
 ```
+
+
+## Enabling Dynamic Beam Hopping
+
+The default commits do not support dynamic beam hopping out of the box. To enable this feature, you can use the scripts provided in this repository by placing them in the correct directories as outlined below.
+
+### 1. Example Script
+Refer to the primary example script for dynamic beam hopping:
+* **File:** `sat-fwd-link-beam-hopping-example_2.cc`
+* **Target Location:** `.../contrib/satellite/examples/`
+
+### 2. Model Files
+The implementation relies on two core model files that must be added to the simulation engine:
+* **Files:** `satellite-dynamic-bstp.cc` and `satellite-dynamic-bstp.h`
+* **Target Location:** `.../contrib/satellite/model/`
+
+### 3. Demand Forecasting Scripts
+Finally, include the python-based demand forecasting scripts required for the simulation:
+* **Files:** `far.py` and `fgn.py`
+* **Target Location:** `.../contrib/satellite/examples/`
