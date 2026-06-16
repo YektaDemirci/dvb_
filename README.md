@@ -23,12 +23,12 @@ your_folders/
 ```bash
 git clone [https://gitlab.com/nsnam/ns-3-dev.git](https://gitlab.com/nsnam/ns-3-dev.git)
 cd ns-3-dev
-```
+
 ## Checkout the specific verified commit (ns-3.46)
-```text
+```bash
 git checkout ea50b72ab79b1ec5912c66d5b384effa829f18bc
 cd contrib
-```
+
 
 ## --- 1. Clone and Checkout 'satellite' ---
 ```text
