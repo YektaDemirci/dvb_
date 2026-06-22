@@ -29,7 +29,7 @@ cd contrib
 
 
 ## --- 1. Clone and Checkout custom 'satellite' ---
-This is the sns-3 repo that supports dynamic BH and built on top of official [sns-3 repository](https://github.com/sns3/sns3-satellite)
+[Following](https://github.com/YektaDemirci/sns3_dynamic_bh.git) is the sns-3 repo that supports dynamic BH and built on top of official [sns-3 repository](https://github.com/sns3/sns3-satellite)
 
 ```bash
 git clone https://github.com/YektaDemirci/sns3_dynamic_bh.git satellite
@@ -75,7 +75,7 @@ your_folders/
         └── satellite/
             └── data/
                 └── scenarios/
-                    └──leo-tlst3-beam-hopping # Copy following this hiearchy
+                    └──leo-tlst3-beam-hopping # Copy here
 ```                 
 
 ```text
@@ -85,7 +85,7 @@ your_folders/
         └── satellite/
             └── data/
                 └── additional-input/
-                    └──SatAntennaGain72BeamsShifted # Replace this file
+                    └──SatAntennaGain72BeamsShifted # Replace this folder
 ```
 
 Then, at ns/ you should be able to run the provided simulation examples, for instance:
