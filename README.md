@@ -1,10 +1,9 @@
-# SNS-3 Satellite Simulation Setup
+# Dyanmic BH enabled sns-3
 
-This repository contains the setup guide for running **SNS-3** simulations. It is based on the official guidelines from the [SNS-3 Satellite GitHub Repository](https://github.com/sns3/sns3-satellite).
+To support dynamic BH, some additional changes are implemented on top of [sns-3 repository](https://github.com/sns3/sns3-satellite)
 
-To run an SNS-3 simulation, you need to clone and configure **four specific repositories** at compatible commit versions.
+The same license of sns-3 applies to this repository.
 
----
 
 ## Directory Structure
 
@@ -12,25 +11,26 @@ The supporter repositories must be cloned inside the `contrib/` folder of your b
 
 ```text
 your_folders/
-└── ns-3-dev/                     # Base Repository
+└── ns/                     # Base Repository
     └── contrib/
         ├── magister-stats/       # Supporter Repository
         ├── satellite/            # Supporter Repository
         └── traffic/              # Supporter Repository     
 ```
 
+To simulate dynamic BH example you can follow the following:
+
 # A. Clone the base ns-3 repository, checkout go to contrib
 ```bash
-git clone https://gitlab.com/nsnam/ns-3-dev.git
-cd ns-3-dev
-git checkout ea50b72ab79b1ec5912c66d5b384effa829f18bc
+git clone https://gitlab.com/nsnam/ns-3-dev.git ns
+cd ns && git checkout ea50b72ab79b1ec5912c66d5b384effa829f18bc
 cd contrib
 ```
 
-## --- 1. Clone and Checkout 'satellite' ---
+
+## --- 1. Clone and Checkout custom 'satellite' ---
 ```bash
-git clone https://github.com/sns3/sns3-satellite.git satellite
-cd satellite && git checkout c4c6e604c3e71daa30c5331d3bbef47b03770deb && cd ..
+git clone https://github.com/YektaDemirci/sns3_dynamic_bh.git satellite
 ```
 
 ## --- 2. Clone and Checkout 'traffic' ---
@@ -42,32 +42,51 @@ cd traffic && git checkout 2710ed71c2cba9d92940bdf53ad85159504329d9 && cd ..
 ## --- 3. Clone and Checkout 'magister-stats' ---
 ```bash
 git clone https://github.com/sns3/stats.git magister-stats
-cd magister-stats && git checkout 003f6a29ce74808d0b2579fd16a9718f793f5bfe && cd ..
+cd magister-stats && git checkout 003f6a29ce74808d0b2579fd16a9718f793f5bfe && cd ../..
 ```
 
-Once you have these, you can compile the source codes as described by [SNS-3 CMake](https://github.com/sns3/sns3-satellite#cmake).
-If the compilation is successful you should be able to run the default simulation examples, for instance:
+## --- 4. Compilation
+Once you have these, you can compile the source codes as described by [SNS-3 CMake](https://github.com/sns3/sns3-satellite#cmake). I had cmake version 3.28.3 while compiling the source codes.
+
+You need to be on /ns folder:
+```bash
+./ns3 clean
+./ns3 configure --build-profile=optimized --enable-examples --enable-tests
+./ns3 build
+```
+
+Once the compilation is successful you can get the input data by:
+```bash
+cd contrib/satellite/
+git submodule update --init --recursive
+```
+
+Then you need to copy the following two data folders to support dynamic BH scenarios. They are provided in [additional support data for dynamic BH](https://github.com/YektaDemirci/dvb_)
+
+i) leo-tlst3-beam-hopping ;copy
+ii) SatAntennaGain72BeamsShifted ;replace
+
+
+your_folders/
+└── ns/                     # Base Repository
+    └── contrib/
+        └── satellite/
+            └── data/
+                └── scenarios/
+                    └──leo-tlst3-beam-hopping # Copy following this hiearchy
+                    
+
+your_folders/
+└── ns/                     # Base Repository
+    └── contrib/
+        └── satellite/
+            └── data/
+                └── additional-input/
+                    └──SatAntennaGain72BeamsShifted # Replace this file
+
+
+Then, at ns/ you should be able to run the provided simulation examples, for instance:
 
 ```bash
-./ns3 run sat-fwd-link-beam-hopping-example
+./ns3 run sat-fwd-link-beam-hopping-example-dynamic -- --simTime=3.01 --planSuperframes=15  --users=sym   --scheduler=fixed   --userBw=330e6   --shape55=1.04   --shape56=1.04   --shape57=1.04
 ```
-
-
-# B. Enabling Dynamic Beam Hopping
-
-The default commits do not support dynamic beam hopping out of the box. To enable this feature, you can use the scripts provided in this repository by placing them in the correct directories as outlined below.
-
-### 1. Example Script
-Refer to the primary example script for dynamic beam hopping:
-* **File:** `sat-fwd-link-beam-hopping-example_2.cc`
-* **Target Location:** `.../contrib/satellite/examples/`
-
-### 2. Model Files
-The implementation relies on two core model files that must be added to the simulation engine:
-* **Files:** `satellite-dynamic-bstp.cc` and `satellite-dynamic-bstp.h`
-* **Target Location:** `.../contrib/satellite/model/`
-
-### 3. Demand Forecasting Scripts
-Finally, include the python-based demand forecasting scripts required for the simulation:
-* **Files:** `far.py` and `fgn.py`
-* **Target Location:** `.../contrib/satellite/examples/`
